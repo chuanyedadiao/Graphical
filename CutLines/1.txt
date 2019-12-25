@@ -1,0 +1,157 @@
+#include<iostream>
+#include<GL/freeglut.h>
+#include<math.h>
+using namespace std;
+void drawLine(int x1, int y1, int x2, int y2)
+{
+	glBegin(GL_LINE);
+	glColor3f(0.0f, 0.0f, 1.0f);
+	glVertex2i(x1, y1);
+	glColor3f(0.0f, 0.0f, 1.0f);
+	glVertex2i(x2, y2);
+	glEnd();
+}
+float yt, yb, xr, xl;
+int x1 = 450;
+int x2 = 0;
+int y1 = 450;
+int y2=0;
+
+int getcode(float x,float y)
+{
+	int code = 0;
+	if (x < xl) code += 1;
+	if (x > xr) code += 2;
+	if (y < yb) code += 4;
+	if (y > yt) code += 8;
+	return code;
+}
+void cut(int *x, int *y, int border,int m,float k)
+{
+	float x0, y0;
+	switch (m)
+	{
+	case 1: {
+		y0 = *y + k * (border - *x);
+		break;
+	}
+	case 2: {
+		y0 = *y + k * (border - *x);
+		break;
+	}
+	case 3: {
+		x0 = *x + (border - *y) / k;
+		break;
+	}
+	case 4: {
+		x0 = *x + (border - *y) / k;
+		break;
+	}
+	}
+	*x = x0;
+	*y = y0;
+}
+void Cohen_Sutherland(int &x1, int &y1, int &x2, int &y2)
+{
+	int code1, code2,code,m=1,x0,y0;
+	float k;
+	k =(float)(y2 - y1) / (x2 - x1);
+	code1 = (x1, y1);
+	code2 = (x2, y2);
+	if (code1&code2) return;
+	while (code1 | code2)
+	{
+		m = 1;
+		if (code1 == 0) {
+			swap(x1, x2);
+			swap(y1, y2);
+			swap(code1, code2);
+		}
+		code =code1;
+		while (!code%2)
+		{
+			code /= 2;
+			m++;
+		}
+		switch (m)
+		{
+		case 1: {
+			cut(&x0, &y0, xl, m, k);
+			break;
+		}
+		case 2: {
+			cut(&x0, &y0, xr, m, k);
+			break;
+		}
+		case 3: {
+			cut(&x0, &y0, yb, m, k);
+			break;
+		}
+		case 4: {
+			cut(&x0, &y0, yt, m, k);
+			break;
+		}
+		}
+		code1 = getcode(x0, y0);
+		x1 = x0; y1 = y0;
+		swap(x1, x2);
+		swap(y1, y2);
+		swap(code1, code2);
+	}
+	drawLine(x1, y1, x2, y2);
+}
+void Initial(void)
+{
+	glClearColor(0.0, 0.0, 0.0, 0.0);
+	glShadeModel(GL_FLAT);
+	x1 = 450, y1 = 0, x2 = 0, y2 = 450;
+	printf("Press key 'c' to Clip!\nPress key 'r' to Restore!\n");
+}
+void Reshape(int w, int h) 
+{
+	glViewport(0, 0, (GLsizei)w, (GLsizei)h);
+	glMatrixMode(GL_PROJECTION);
+	glLoadIdentity();
+	gluOrtho2D(0.0, (GLdouble)w, 0.0, (GLdouble)h);
+}
+void keyboard(unsigned char key, int x, int y)
+{
+	switch (key) {
+	case 'c':
+		Cohen_Sutherland(x1, y1, x2, y2);
+		glutPostRedisplay();
+		break;
+	case 'r':
+		Initial();
+		glutPostRedisplay();
+		break;
+	case 'x':
+		exit(0);
+		break;
+	default:
+		break;
+	}
+}
+void Display(void)
+{
+
+	glClear(GL_COLOR_BUFFER_BIT);
+	glColor3f(1.0f, 0.0f, 0.0f);
+	glRectf(xl, yb, xr, yt);
+	glFlush();
+}
+
+int main(int argc, char** argv)
+{
+	glutInit(&argc, argv);
+	glutInitDisplayMode(GLUT_SINGLE | GLUT_RGB);
+	glutInitWindowSize(600, 500);
+	glutInitWindowPosition(100, 100);
+	glutCreateWindow("CUT");
+	Initial();
+	glutDisplayFunc(Display);
+	glutReshapeFunc(Reshape);
+	glutKeyboardFunc(keyboard);
+	glutMainLoop();
+	return 0;
+}

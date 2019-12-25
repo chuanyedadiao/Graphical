@@ -1,0 +1,14 @@
+﻿  CutLines.cpp
+d:\小黄片\计算机图形学\作业\031720106-徐宇顺\cutlines\cutlines\cutlines.cpp(47): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+d:\小黄片\计算机图形学\作业\031720106-徐宇顺\cutlines\cutlines\cutlines.cpp(48): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+d:\小黄片\计算机图形学\作业\031720106-徐宇顺\cutlines\cutlines\cutlines.cpp(49): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+d:\小黄片\计算机图形学\作业\031720106-徐宇顺\cutlines\cutlines\cutlines.cpp(54): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+d:\小黄片\计算机图形学\作业\031720106-徐宇顺\cutlines\cutlines\cutlines.cpp(55): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+d:\小黄片\计算机图形学\作业\031720106-徐宇顺\cutlines\cutlines\cutlines.cpp(56): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+d:\小黄片\计算机图形学\作业\031720106-徐宇顺\cutlines\cutlines\cutlines.cpp(61): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+d:\小黄片\计算机图形学\作业\031720106-徐宇顺\cutlines\cutlines\cutlines.cpp(62): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+d:\小黄片\计算机图形学\作业\031720106-徐宇顺\cutlines\cutlines\cutlines.cpp(63): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+d:\小黄片\计算机图形学\作业\031720106-徐宇顺\cutlines\cutlines\cutlines.cpp(68): warning C4244: “=”: 从“int”转换到“float”，可能丢失数据
+d:\小黄片\计算机图形学\作业\031720106-徐宇顺\cutlines\cutlines\cutlines.cpp(69): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+d:\小黄片\计算机图形学\作业\031720106-徐宇顺\cutlines\cutlines\cutlines.cpp(70): warning C4244: “=”: 从“float”转换到“int”，可能丢失数据
+  CutLines.vcxproj -> D:\小黄片\计算机图形学\作业\031720106-徐宇顺\CutLines\Debug\CutLines.exe
